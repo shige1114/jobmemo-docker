@@ -1,0 +1,49 @@
+version: '3'
+
+services:
+  db:
+    container_name: golang-db
+    build:
+      context: .
+      dockerfile: ./db/Dockerfile
+    environment:
+      - POSTGRES_DB=test_db
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=password
+    tty: true
+    ports:
+      - 5555:5432
+    volumes:
+      - type: volumes
+        source: test_volume
+        target: /var/lib/postgresql
+      - type: bind
+        source: ./db/init
+        target: /docker-entrypoint-initdb.d
+    networks:
+      - golang_test_network
+
+  backend:
+    container_name: backend-golang
+    build:
+      context: ./backend/
+      dockerfile: Dockerfile
+    volumes:
+      - type: bind
+        source: /go/src/github.com/backend
+        target: ./backend
+    tty: true
+    env_file:
+      - ./backend/.go_env
+    environment:
+      - TZ=Asia/Tokyo
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
+    networks:
+      - golang_test_network
+
+networks:
+  golang_test_network:
+    driver: bridge

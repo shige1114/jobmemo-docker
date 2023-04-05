@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+
+    container_name: frontend-nextjs
+    working_dir: /frontend
+    stop_signal: SIGINT
+    volumes:
+      - ./frontend:/frontend
+    ports:
+      - '3000:3000'
+    
+    stdin_open: true
+    tty: true
