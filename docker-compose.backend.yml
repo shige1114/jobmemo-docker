@@ -31,10 +31,10 @@ services:
     volumes:
       - type: bind
         source: /go/src/github.com/backend
-        target: ./backend
+        target: ./src/backend
     tty: true
     env_file:
-      - ./backend/.go_env
+      - ./docker-backend/.go_env
     environment:
       - TZ=Asia/Tokyo
     ports:
@@ -43,6 +43,7 @@ services:
       - db
     networks:
       - golang_test_network
+    
 
 networks:
   golang_test_network:

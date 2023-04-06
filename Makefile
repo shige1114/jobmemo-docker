@@ -4,7 +4,7 @@ buildback:
 startback:
 	docker-compose -f docker-compose.backend.yml -p backend up
 back:
-	docker exec -it backend-rails-api /bin/bash
+	docker exec -it backend-golang /bin/bash
 
 
 buildfront:
