@@ -6,6 +6,4 @@ RUN mkdir -p /go/src/github.com/backend
 WORKDIR /go/src/github.com/backend
 
 ADD . /go/src/github.com/backend/
-RUN go mod init jobmemo
-
-
+RUN go mod init jobmemo 

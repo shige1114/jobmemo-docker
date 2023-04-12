@@ -5,8 +5,7 @@ if [ ! -e "/frontend/package.json" ]; then
   echo 'nextjsを新規インストール'
   npm init -y
   npm install create-next-app
-  npx create-next-app@latest jobapp --use-npm --typescript
-  rm -rf jobapp/.gitignore
+  npx create-next-app@latest jobapp --use-npm --typescript --src-dir
 fi
 
 if [ ! -d "/frontend/jobapp/node_modules" ]; then

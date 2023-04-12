@@ -8,11 +8,14 @@ services:
 
     container_name: frontend-nextjs
     working_dir: /frontend
+    environment:
+      - TZ=Asia/Tokyo
+      - PS1=\[\e[34m\]\w\n\[\e[0m\]*\[\e[35m\]\u\[\e[0m\]:\[\e[32m\]\W\[\e[0m\]$ 
     stop_signal: SIGINT
     volumes:
       - type: bind
-        source: /frontend
-        target: ./src/frontend
+        source: ./src/frontend
+        target: /frontend
     ports:
       - '3000:3000'
     

@@ -1,7 +1,5 @@
-FROM node
+FROM node:19-alpine
 WORKDIR /frontend
-COPY entrypoint.sh /usr/bin
-RUN chmod +x /usr/bin/entrypoint.sh
-ENTRYPOINT [ "entrypoint.sh" ]
+RUN apk update && apk add git && apk add vim
+RUN npm install -g npm@latest && npm install create-next-app
 
-CMD ["npm","run","dev"]
