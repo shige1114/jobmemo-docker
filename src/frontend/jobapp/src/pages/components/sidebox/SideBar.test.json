@@ -1,0 +1,27 @@
+[
+    {
+        "company_name": "カイシャ1",
+        "company_id": "kaisya1",
+        "user_id": "mono",
+        "recruitment_status": "1"
+    },
+    {
+        "company_name": "カイシャ2",
+        "company_id": "kaisya2",
+        "user_id": "mono",
+        "recruitment_status": "2"
+    },
+    {
+        "company_name": "カイシャ3",
+        "company_id": "kaisya3",
+        "user_id": "mono",
+        "recruitment_status": "3"
+    },
+    {
+        "company_name": "カイシャ4",
+        "company_id": "kaisya4",
+        "user_id": "mono",
+        "recruitment_status": "4"
+    }
+  
+]
