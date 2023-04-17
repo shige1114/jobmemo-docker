@@ -1,7 +1,13 @@
-package main
+// advanced-middleware.go
+package cmd/jobapp/main
 
-import {"fmt"}
+
+import (
+	"fmt"
+	"github.com/backend/pkg"
+)
 
 func main(){
-	fmt.Println("Hello World")
+	fmt.Println("Hello, World!")
 }
+
