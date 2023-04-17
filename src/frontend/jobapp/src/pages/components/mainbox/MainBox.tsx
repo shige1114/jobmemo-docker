@@ -9,29 +9,50 @@ import TitleBox, { TitleBoxProp } from "./titlebox/TitleBox";
 
 
 interface MainBoxProps extends BoxProps {
-    
+
 }
 
-const titleProps_t:TitleBoxProp = {
-    "recrutment_status":"一次面接",
-    "company_name":"株式会社カイシャ"
+const titleProps_t: TitleBoxProp = {
+    "recrutment_status": "一次面接",
+    "company_name": "株式会社カイシャ"
 }
-const barBoxProps_t:BodyBarBoxProp = {
-    'datas':[
-        [
-            
-        ],
+const barBoxProps_t: BodyBarBoxProp = {
+    'datas': [
+        {
+            'datas': [
+                {
+                    "company_id": "kaisya",
+                    "user_id": "go",
+                    "title": "aiueo",
+                    "body": "愛じゃflっjflアjdっかjあ"
+                },
+                {
+                    "company_id": "kaisya",
+                    "user_id": "go",
+                    "title": "aiueo",
+                    "body": "愛じゃflっjflアjdっかjあ"
+                },
+                {
+                    "company_id": "kaisya",
+                    "user_id": "go",
+                    "title": "aiueo",
+                    "body": "愛じゃflっjflアjdっかjあ"
+                },
+            ],
+            "recrute_status":"1次面接"
+        }
+
     ],
-    "recrute_status":""
+    "recrute_status": "djafljf;aljf"
 
 }
 
 const MainBox = () => {
     return (
         <div className="main-box">
-
-            <TitleBox {...titleProps_t}/>
-            <BodyBarBox {...barBoxProps_t}/>
+            <BodyBarBox {...barBoxProps_t} />
         </div>
     )
 }
+
+export default MainBox

@@ -5,6 +5,7 @@ import styles from '@/styles/Home.module.css'
 import { Container, Row } from 'react-bootstrap'
 import SideBar from './components/sidebox/SideBar'
 import ListOval from './components/sidebox/namebox/ListOval'
+import MainBox from './components/mainbox/MainBox'
 const inter = Inter({ subsets: ['latin'] })
 const testprop = [
   {
@@ -47,9 +48,8 @@ export default function Home() {
       <div>
 
 
-        
-        <SideBar datas={testprop} />
-
+      <SideBar datas={testprop}/> 
+      <MainBox/>
 
       </div>
     </>

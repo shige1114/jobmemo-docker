@@ -12,31 +12,34 @@ const propTypes = {
 }
 const SideBar = (props: SideBarProps) => {
     const [datas, setDatas] = useState<ListOvalProps[]>([])
-    const checkDatas = (datas: any) => {
-        if (datas != undefined) {
-            return true
+    useEffect(()=>{
+        checkDatas(props.datas)
+    },[])
+    function checkDatas(datas:any){
+        if (datas != undefined && datas.length > 0){
+            setDatas(datas)
         }
-        return false
     }
+    
     const Item = () => {
 
-        if (props.datas.length > 0) {
+        if (datas.length > 0) {
 
-            return props.datas.map((data: ListOvalProps, index: number) => (
-                <Nav.Item key={index}>
-                    <ListOval
-                        company_id={data.company_id}
-                        company_name={data.company_name}
-                        user_id={data.user_id}
-                        recruitment_status={data.recruitment_status}
-                    />
-                </Nav.Item>
-            ))
+            return (<>
+                {datas.map((data: ListOvalProps, index: number) => (
+                        <Nav.Item key={index}>
+                            <ListOval
+                                company_id={data.company_id}
+                                company_name={data.company_name}
+                                user_id={data.user_id}
+                                recruitment_status={data.recruitment_status}
+                            />
+                        </Nav.Item>
+                    ))}
+            </>)
         }
-
-
         return (
-            <p>失敗しました{props.datas?.length}</p>
+            <p>失敗しました{datas.length}</p>
         )
     }
     return (

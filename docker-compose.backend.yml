@@ -34,8 +34,6 @@ services:
         source: ./src/backend
         target: /go/src/github.com/backend
     tty: true
-    env_file:
-      - ./docker-backend/.go_env
     environment:
       - TZ=Asia/Tokyo
       - PS1=\[\e[34m\]\w\n\[\e[0m\]*\[\e[35m\]\u\[\e[0m\]:\[\e[32m\]\W\[\e[0m\]$ 

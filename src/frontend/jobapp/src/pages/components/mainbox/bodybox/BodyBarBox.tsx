@@ -1,14 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import classNames from "classnames";
-import PropTypes from "prop-types";
-import { Tab,Tabs } from "react-bootstrap";
+import PropTypes, { func } from "prop-types";
+import { Tab, Tabs } from "react-bootstrap";
 import InfoOval, { InfoOvalProps } from "./InfoOval";
 import { BoxProps } from "../../Grid/Box/Box";
 import InfoBox, { InfoBoxProp } from "./InfoBox";
 
 
 export interface BodyBarBoxProp extends BoxProps {
-    datas: InfoBoxProp[]
+    datas?: InfoBoxProp[]
     recrute_status: string
 }
 const propTypes = {
@@ -17,44 +17,50 @@ const propTypes = {
 }
 
 const BodyBarBox = (prop: BodyBarBoxProp) => {
-    const [datas, setInfoDatas] = useState(prop.datas)
+    const [datas, setInfoDatas] = useState<InfoBoxProp[]>([])
     const [key, setKey] = useState(prop.recrute_status)
-    
-    function Item(datas: InfoBoxProp[]) {
-        if (datas != undefined) {
-            if (datas.length != 0) {
-                datas.forEach((item:any) => {
-                    const { recrute_status,...info } = item
-                    return (
-                        <Tab
-                        eventKey={recrute_status}
-                        title={recrute_status}
-                        >
-                            <InfoBox {...info}/>
-                        </Tab>
-                    )
-                })
-            }
+    useEffect(()=>{
+        checkDatas(prop.datas)
+    },[])
+    function checkDatas(datas:any){
+        if (datas != undefined && datas.length > 0){
+            setInfoDatas(datas)
         }
-        return (
-            <></>
-        )
-        
+    }
+
+    function Item() {
+        if (datas.length > 0) {
+            const html = (datas.map((item: InfoBoxProp) => {
+                return (
+                    <Tab
+                        eventKey={item.recrute_status}
+                        title={item.recrute_status}
+                        key={item.recrute_status}
+                    >
+                        <InfoBox {...item} />
+                    </Tab>
+                )
+            }))
+            return html
+        } else {
+            return <p>失敗しました</p>;
+        }
     }
 
     return (
         <div className="box-dody">
             <Tabs
-            id="company-info-bar"
-            activeKey={key}
-            onSelect={(k:any)=>setKey(k)}
-            className="mb-3"
+                id="company-info-bar"
+                defaultActiveKey={key}
+                onSelect={(k: any) => setKey(k)}
+                className="mb-3"
             >
-                {Item(datas)}
+                {Item()}
+
             </Tabs>
         </div>
     )
 }
-
+//<Item datas={datas}/>
 BodyBarBox.propTypes = propTypes
 export default BodyBarBox

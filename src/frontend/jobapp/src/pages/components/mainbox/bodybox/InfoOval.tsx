@@ -33,6 +33,7 @@ const propTypes = {
 */
 
 const InfoOval = (props: InfoOvalProps) => {
+    console.log(props.title)
     return (
         <Oval className="info">
             <div className="info-title">
