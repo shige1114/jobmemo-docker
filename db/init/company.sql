@@ -2,8 +2,8 @@ CREATE TABLE IF NOT EXISTS campanies (
     id SERIAL PRIMARY KEY,
     name TEXT NOT NULL,
     industry TEXT NOT NULL,
-    created_at TIMESTAMP NOT NULL DEFAULT NOW()
-    updated_at TIMESTAMP NOT NULL DEFAULT NOW()
+    created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMP NOT NULL DEFAULT NOW(),
 );
 /*
 CREATE TABLE IF NOT EXISTS company_reviews (
