@@ -1,5 +1,5 @@
 CREATE TABLE selections(
-    id SERIAL PRIMARY KEY,
+    id UUID PRIMARY KEY,
     /*先行の種類*/
     level INTEGER NOT NULL,
     type INTEGER NOT NULL DEFAULT 1,
@@ -15,7 +15,7 @@ CREATE TABLE selections(
 );
 
 CREATE TABLE questions(
-    id SERIAL PRIMARY KEY,
+    id UUID PRIMARY KEY,
     /*質問の本文*/
     title VARCHAR(20) NOT NULL,
     /*返答*/
@@ -24,17 +24,17 @@ CREATE TABLE questions(
 
 CREATE TABLE preparations(
     /*選考と逆質問に関する連想エンティティ*/
-    selections_id SERIAL REFERENCES selections (id),
-    questions_id  SERIAL REFERENCES questions (id),
+    selections_id UUID REFERENCES selections (id),
+    questions_id  UUID REFERENCES questions (id),
 
     PRIMARY KEY (selections_id,questions_id)
 );
 
 CREATE TABLE status(
     /*採用と選考の連想エンティティ*/
-    selections_id  SERIAL REFERENCES selections(id) , 
-    users_id SERIAL REFERENCES users(id),
-    companies_id SERIAL REFERENCES companies(id),
+    selections_id  UUID REFERENCES selections(id) , 
+    users_id UUID REFERENCES users(id),
+    companies_id UUID REFERENCES companies(id),
 
     PRIMARY KEY (users_id,selections_id,companies_id)
 );

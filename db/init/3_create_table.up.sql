@@ -1,7 +1,7 @@
 CREATE TABLE recruits(
     /*就活生と企業の連想エンティティ*/
-    users_id  SERIAL REFERENCES users(id),
-    companies_id  SERIAL REFERENCES companies(id),
+    users_id  UUID REFERENCES users(id),
+    companies_id  UUID REFERENCES companies(id),
     /*ID*/
     PRIMARY KEY(users_id,companies_id),
 
