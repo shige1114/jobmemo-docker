@@ -13,18 +13,13 @@ CREATE TABLE users (
     created_at TIMESTAMP NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMP NOT NULL DEFAULT NOW()
 );
-
+/*就活軸*/
 CREATE TABLE cores (
-    /*就活軸*/
     id UUID PRIMARY KEY,
     title VARCHAR(8) NOT NULL,
-    reason VARCHAR(100) NOT NULL
-);
+    reason VARCHAR(100) NOT NULL,
 
-CREATE TABLE users_cores (
-    /*就活軸とユーザの連想エンティティ*/
-    users_id  UUID REFERENCES users(id),
-    cores_id  UUID REFERENCES cores(id),
-
-    PRIMARY KEY (users_id,cores_id)
+    users_id UUID REFERENCES users(id),
+    
+    FOREIGN KEY(users_id) REFERENCES users(id) ON DELETE CASCADE
 );
