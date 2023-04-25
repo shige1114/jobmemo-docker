@@ -1,2 +1,2 @@
-DROP TABLE selections;
-DROP TABLE questions;
+DROP TABLE selections CASCADE;
+DROP TABLE questions CASCADE;

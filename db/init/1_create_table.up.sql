@@ -5,10 +5,10 @@ CREATE TABLE users (
     email TEXT NOT NULL,
 
     /*自己分析*/
-    future VARCHAR(300) NOT NULL,
-    pr VARCHAR(300) NOT NULL,
-    good_point VARCHAR(200) NOT NULL,
-    bad_point VARCHAR(200) NOT NULL,
+    future VARCHAR(300) NOT NULL  DEFAULT '',
+    pr VARCHAR(300) NOT NULL  DEFAULT '',
+    good_point VARCHAR(200) NOT NULL  DEFAULT '',
+    bad_point VARCHAR(200) NOT NULL  DEFAULT '',
     
     created_at TIMESTAMP NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMP NOT NULL DEFAULT NOW()

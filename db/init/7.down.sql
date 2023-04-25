@@ -1,0 +1,9 @@
+DROP TABLE users CASCADE;
+DROP TABLE cores CASCADE;
+DROP TABLE companies CASCADE;
+DROP TABLE recruits;
+DROP TABLE selections CASCADE;
+DROP TABLE questions CASCADE;
+DROP TABLE preparations CASCADE;
+DROP TABLE status;
+DROP TABLE users_cores;

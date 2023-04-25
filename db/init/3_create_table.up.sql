@@ -5,8 +5,8 @@ CREATE TABLE recruits(
     /*ID*/
     PRIMARY KEY(users_id,companies_id),
     /*合否*/
-    reject BOOLEAN NOT NULL,
-    offer BOOLEAN NOT NULL,
+    reject BOOLEAN NOT NULL DEFAULT  FALSE,
+    offer BOOLEAN NOT NULL DEFAULT FALSE,
     /*企業研究*/
     motivation VARCHAR(300) NOT NULL,
     good_point VARCHAR(200) NOT NULL,
