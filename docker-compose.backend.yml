@@ -35,6 +35,7 @@ services:
         target: /go/src/github.com/backend
     tty: true
     environment:
+      - DATABASE_URI=postgres://root:password@db:5432/test_db
       - TZ=Asia/Tokyo
       - PS1=\[\e[34m\]\w\n\[\e[0m\]*\[\e[35m\]\u\[\e[0m\]:\[\e[32m\]\W\[\e[0m\]$ 
     ports:

@@ -1,11 +1,10 @@
 package db
 
 import (
-	"database/sql"
 	"fmt"
 	"log"
 	"os"
-
+	"github.com/jmoiron/sqlx"
 	_ "github.com/jackc/pgx"
 )
 
@@ -24,10 +23,12 @@ func NewStore(uri string) (*Store, error) {
 	return &Store{
 		SideStore: &SideStore{DB: db},
 		MainStore: &MainStore{DB: db},
+		UsersStore: &UsersStore{DB: db}
 	}, nil
 }
 
 type Store struct {
 	*SideStore
 	*MainStore
+	*UsersStore
 }
