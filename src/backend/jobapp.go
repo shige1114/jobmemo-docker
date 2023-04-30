@@ -7,24 +7,24 @@ import (
 )
 
 type Users struct {
-	id    uuid.UUID `db:"id"`
-	name  string    `db:"name"`
-	email string    `db:"email"`
+	Id    uuid.UUID `db:"id"`
+	Name  string    `db:"name"`
+	Email string    `db:"email"`
 
-	future     string `db:"future"`
-	pr         string `db:"pr"`
-	good_point string `db:"good_point"`
-	bad_point  string `db:"bad_point"`
+	Future    string `db:"future"`
+	Pr        string `db:"pr"`
+	GoodPoint string `db:"good_point"`
+	BadPoint  string `db:"bad_point"`
 
-	created_at time.Time `db:"created_at"`
-	updated_at time.Time `db:"updated_at"`
+	CreatedAt time.Time `db:"created_at"`
+	UpdatedAt time.Time `db:"updated_at"`
 }
 type Cores struct {
-	id     uuid.UUID `db:"id"`
-	title  string    `db:"title"`
+	Id     uuid.UUID `db:"id"`
+	Title  string    `db:"title"`
 	reason string    `db:"reason"`
 
-	users_id uuid.UUID `db:"users_id"`
+	UsersId uuid.UUID `db:"users_id"`
 }
 type Companies struct {
 	id       uuid.UUID `db:"id"`
@@ -32,7 +32,7 @@ type Companies struct {
 	industry string    `db:"industry"`
 }
 type Recruits struct {
-	users_id     uuid.UUID `db:"users_id"`
+	UsersId      uuid.UUID `db:"users_id"`
 	companies_id uuid.UUID `db:"companies_id"`
 
 	reject bool `db:"reject"`
@@ -58,7 +58,7 @@ type Selections struct {
 	good_point bool   `db:"good_point"`
 	memo       string `db:"memo"`
 
-	users_id     string `db:"users_id"`
+	UsersId      string `db:"users_id"`
 	companies_id string `db:"companies_id"`
 }
 

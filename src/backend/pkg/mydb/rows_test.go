@@ -1,36 +1,36 @@
 package mydb
 
 import (
-	"testing"
 	"database/sql"
-	"github.com/backend"
-	"fmt"
-	_ "github.com/jackc/pgx/v4/stdlib"
 	"log"
+	"testing"
 
+	"github.com/backend"
+	_ "github.com/jackc/pgx/v4/stdlib"
 )
 
 func TestScanStruct(t *testing.T) {
 
 	con, err := sql.Open("pgx", "postgres://root:password@db:5432/test_db")
+	var user backend.Users
 	if err != nil {
-		t.Fatalf("接続エラー:%v",err)
+		t.Fatalf("接続エラー:%v", err)
 	}
 	defer con.Close()
 
-	var user backend.Users
+	log.Println("user;", user)
 
-	log.Println(user)
-
-	row,err := con.Query("SELECT * FROM users LIMIT 1")
+	row, err := con.Query("SELECT * FROM users")
 	if err != nil {
-		fmt.Errorf("データベースエラー：%v",err)
+		log.Printf("データベースエラー：%v", err)
 	}
-	rows := Row{rows:row}
 
-	
-	if err := rows.ScanStruct(user); err != nil {
-		fmt.Errorf("スキャンエラー：%v",err)
+	rows := Row{rows: row}
+
+	log.Println("row:", rows)
+
+	if err := rows.Scans(&user); err != nil {
+		log.Printf("%v", err)
 	}
 
 }

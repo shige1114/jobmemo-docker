@@ -5,29 +5,35 @@ import (
 	"fmt"
 )
 
-type DB struct {
+type Mysql struct {
 	*sql.DB
 	driverName string
 }
 
-func NewDB (db *sql.DB,driverName string) *DB {
-	return &DB{DB: db, driverName: driverName}
+func NewMysql(db *sql.DB, driverName string) *Mysql {
+	return &Mysql{DB: db, driverName: driverName}
 }
 
-func (d *DB) Open(driverName, dataSourceName string)(*DB ,error){
-	db, err:=sql.Open(driverName,dataSourceName)
+func Open(driverName, dataSourceName string) (*Mysql, error) {
+	db, err := sql.Open(driverName, dataSourceName)
 	if err != nil {
-		return nil ,err
+		return nil, err
 	}
-	return &DB{DB:db,driverName:driverName},nil
+	return &Mysql{DB: db, driverName: driverName}, nil
 }
 
-func (d *DB) Query(t string, args ...interface{}) (*Row, error) {
+func (d *Mysql) Query(t string, args ...interface{}) (*Row, error) {
 	rows, err := d.DB.Query(t, args...)
 	if err != nil {
 		return nil, fmt.Errorf("")
 	}
-	return &Row{rows:rows}, nil
+	return &Row{rows: rows}, nil
 }
 
-
+func (d *Mysql) QueryRow(t string, args ...interface{}) (*Row, error) {
+	row := d.DB.QueryRow(t, args...)
+	if row.Err() != nil {
+		return nil, fmt.Errorf("")
+	}
+	return &Row{row: row}, nil
+}
