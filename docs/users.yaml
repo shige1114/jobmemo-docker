@@ -1,0 +1,64 @@
+openapi: 3.0.0
+
+
+info:
+  version:1.0.0
+  title:jobmemo api
+
+paths:
+  /users:
+    post:
+      summary: 新規ユーザ登録
+      tags:
+        - users
+      parameters:
+        - in: header
+          name: user_token
+          required: true
+          schema:
+            type: string
+            description: User's token
+        - in: query
+          name: email
+          required: true
+          schema:
+            type: string
+            description: User's email
+      responses:
+        '200':
+          description: ユーザ登録完了
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  sidebar:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Sidebar'
+  /users/{userId}:
+    get:
+      tags:
+       - user
+      summary: ログイン処理
+      paramaters:
+        - name: userToken
+          in: path
+          schema: 
+            type: string
+            required: true
+      responses:
+        '200':
+          description: 成功
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Sidebar'
+        '401':
+          description: 認証エラー
+        '403':
+          description: 認可エラー
+        '500':
+          description: サーバーエラー
