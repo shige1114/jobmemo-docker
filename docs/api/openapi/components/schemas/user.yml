@@ -1,0 +1,25 @@
+user:
+  type: object
+  required:
+    - id
+    - email
+    - future
+    - good_point
+    - bad_point
+    - pr
+  properties:
+    id:
+      type: string
+      format: uuid
+    email:
+      type: string
+    future:
+      type: string
+    good_point:
+      type: string
+    bad_point:
+      type: string
+    pr:
+      type: string
+  
+

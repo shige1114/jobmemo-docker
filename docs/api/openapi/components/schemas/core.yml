@@ -1,0 +1,18 @@
+core:
+  type: object
+  properties:
+    users_id:
+      type: string
+      format: uuid
+    title:
+      type: string
+    reason:
+      type: string
+
+cores:
+  type: array
+  maxItems: 10
+  items:
+    $ref: "#/core"
+  
+

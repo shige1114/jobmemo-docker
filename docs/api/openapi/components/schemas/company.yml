@@ -1,0 +1,18 @@
+company:
+  type: object
+  properties:
+    id:
+      type: string
+      format: uuid
+      description: The unique identifier for the company.
+    name:
+      type: string
+      description: The name of the company.
+    industry:
+      type: string
+      description: The industry that the company belongs to.
+companies:
+  type: array
+  maxItems: 100
+  items:
+    $ref: "#/company"

@@ -1,0 +1,67 @@
+openapi: "3.0.1"
+
+info:
+  title: jobapp
+  version: "0.0.1"
+
+servers:
+  - url: http://localhost:8080
+    description: テストサーバ
+
+tags:
+  - name: user
+    description: ユーザ
+
+  - name: core
+    description: 就活軸
+
+  - name: recruit
+    description: 応募状況
+
+  - name: company
+    description: 会社
+
+  - name: profile
+    description: 自己分析
+
+  - name: sidebar
+    description: サイドバーアイテム
+  
+  - name: selection
+    description: 選考に関するメモ
+  
+  - name: question
+    description: 選考で行う逆質問
+
+paths:
+  /users:
+    $ref: "./paths/users.yml#/users"
+  /cores:
+    $ref: "./paths/cores.yml#/cores"
+  /profiles:
+    $ref: "./paths/profiles.yml#/profiles"
+  /recruits:
+    $ref: "./paths/recruits.yml#/recruits"
+  /sidebars:
+    $ref: "./paths/sidebars.yml#/sidebars"
+  /selections:
+    $ref: "./paths/selections.yml#/selections"
+  /questions:
+    $ref: "./paths/questions.yml#/questions"
+
+components:
+  schemas:
+    user:
+      $ref: "./components/schemas/user.yml#/user"
+    profiles:
+      $ref: "./components/schemas/profile.yml#/profile"
+    core:
+      $ref: "./components/schemas/core.yml#/core"
+    recruit:
+      $ref: "./components/schemas/recruit.yml#/recruit"
+    sidebars:
+      $ref: "./components/schemas/sidebar.yml#/sidebar"
+    selection:
+      $ref: "./components/schemas/selection.yml#/selection"
+    question:
+      $ref: "./components/schemas/question.yml#/question"

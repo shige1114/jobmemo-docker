@@ -1,0 +1,5 @@
+description: 不正なリクエスト
+content:
+  application/json:
+    schema:
+       $ref: "../schemas/error.yml#/error"

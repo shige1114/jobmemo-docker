@@ -1,0 +1,73 @@
+recruits:
+  get:
+    summary: 企業研究を取得
+    tags:
+      - recruit
+    parameters:
+      - in: cookie
+        name: session_id
+        description: The session
+        schema:
+          type: string
+          format: uuid
+      - in: cookie
+        name: user_id
+        description: user id
+        schema:
+          type: string
+          format: uuid
+      - in: query
+        name: companies_id
+        description: company id
+        schema:
+          type: string
+          format: uuid
+
+    responses:
+      "200":
+        description: 企業研究を取得
+        content:
+          application/json:
+            schema:
+              $ref: "../components/schemas/recruit.yml#/recruit"
+      "400":
+        $ref: "../components/response/400.yml"
+      "401":
+        $ref: "../components/response/400.yml"
+      "403":
+        $ref: "../components/response/400.yml"
+      "404":
+        $ref: "../components/response/400.yml"
+      "422":
+        $ref: "../components/response/400.yml"
+      "500":
+        $ref: "../components/response/400.yml"
+
+  post:
+    summary: 企業研究を作成
+    tags:
+      - recruit
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: "../components/schemas/recruit.yml#/recruit"
+    responses:
+      "200":
+        description: 企業研究を作成
+        content:
+          application/json:
+            schema:
+              $ref: "../components/schemas/recruit.yml#/recruit"
+      "400":
+        $ref: "../components/response/400.yml"
+      "401":
+        $ref: "../components/response/400.yml"
+      "403":
+        $ref: "../components/response/400.yml"
+      "404":
+        $ref: "../components/response/400.yml"
+      "422":
+        $ref: "../components/response/400.yml"
+      "500":
+        $ref: "../components/response/400.yml"

@@ -1,0 +1,43 @@
+selection:
+  type: object
+  properties:
+    id:
+      type: string
+      format: uuid
+    level:
+      type: integer
+    types:
+      type: string
+    person:
+      type: string 
+    
+    adjusting:
+      type: boolean
+    date:
+      type: integer
+      format: float
+    
+    pass:
+      type: boolean
+    fail:
+      type: boolean
+    
+    good_point:
+      type: string  
+    memo:
+      type: string
+    
+
+    companies_id:
+      type: string
+      format: uuid
+      
+    users_id:
+      type: string
+      format: uuid
+    
+
+selections:
+  type: array
+  maxItems: 20
+  $ref: "#/selection"

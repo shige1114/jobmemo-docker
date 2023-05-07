@@ -1,0 +1,30 @@
+question:
+  type: object
+  required:
+    - id
+    - title
+    - answer
+    - selections_id
+  properties:
+    id:
+      type: string
+      format: uuid
+      description: The unique identifier for the question.
+    title:
+      type: string
+      maxLength: 20
+      description: The body text of the question.
+    answer:
+      type: string
+      maxLength: 100
+      description: The answer to the question.
+    selections_id:
+      type: string
+      format: uuid
+      description: The unique identifier of the selection associated with the question.
+
+questions:
+  type: array
+  maxItems: 10
+  items: 
+    $ref: "#/question"

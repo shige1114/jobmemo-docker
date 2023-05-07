@@ -1,0 +1,37 @@
+sidebar:
+  type: object
+  properties:
+    companies_id:
+      type: string
+      format: uuid
+      description: 会社ID
+
+    users_id:
+      type: string
+      format: uuid
+      description: ユーザID
+
+    selections_level:
+      type: string
+      description: 選考段階
+
+    selections_adusting:
+      type: string
+      description: 日程調整しているか否か
+    selections_date:
+      type: number
+      format: float
+      description: 選考日時
+
+    recruits_reject:
+      type: boolean
+      description: 不合格か
+    recruits_offer:
+      type: boolean
+      description: 内定か
+
+sidebars:
+  type: array
+  maxItems: 20
+  items:
+    $ref: "#/sidebar"

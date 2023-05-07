@@ -1,0 +1,21 @@
+error:
+  type: object
+  properties:
+    code:
+      type: integer
+      description: エラーコード
+    message:
+      type: string
+      description: エラーメッセージ
+    errors:
+      type: array
+      description: エラー詳細
+      items:
+        type: object
+        properties:
+          field:
+            type: string
+            description: エラーが発生したフィールド
+          message:
+            type: string
+            description: エラーメッセージ

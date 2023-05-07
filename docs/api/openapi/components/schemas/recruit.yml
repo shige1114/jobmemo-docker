@@ -1,0 +1,24 @@
+recruit:
+  type: object
+  required:
+    - user_id
+    - companies_id
+    - motivation
+    - good_point
+    - concerns
+  properties:
+    users_id:
+      type: string
+      format: uuid
+    companies_id:
+      type: string
+      format: uuid
+    motivation:
+      type: string
+      description: 志望動機
+    good_point:
+      type: string
+      description: 良い点
+    concerns:
+      type: string
+      description: 懸念点

@@ -1,0 +1,19 @@
+profile:
+  type: object
+  properties:
+    id:
+      type: string
+      format: uuid
+      description: ユーザID
+    future:
+      type: string
+      description: 将来像
+    pr:
+      type: string
+      description: PR
+    good_point:
+      type: string
+      description: 長所
+    bad_point:
+      type: string
+      description: 短所

@@ -1,0 +1,32 @@
+cores:
+  post:
+    tags:
+      - core
+    summary: 就活軸の登録
+
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: "../components/schemas/core.yml#/cores"
+
+    responses:
+      "200":
+        description: 成功
+        content:
+          application/json:
+          schema:
+            $ref: "../components/schemas/core.yml#/cores"
+
+      "400":
+        $ref: "../components/response/400.yml"
+      "401":
+        $ref: "../components/response/400.yml"
+      "403":
+        $ref: "../components/response/400.yml"
+      "404":
+        $ref: "../components/response/400.yml"
+      "422":
+        $ref: "../components/response/400.yml"
+      "500":
+        $ref: "../components/response/400.yml"
