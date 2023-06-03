@@ -12,3 +12,4 @@ CREATE TABLE recruits(
     good_point VARCHAR(200) NOT NULL,
     concerns VARCHAR(200) NOT NULL
 );
+

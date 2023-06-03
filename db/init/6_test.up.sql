@@ -46,3 +46,10 @@ INSERT INTO questions (
     'ec35b76a-e325-11ed-8886-26359435711c',
     'title'
 );
+
+SELECT c.name as companies_name, r.offer as recruits_offer,
+s.level as selections_level
+FROM recruits r
+JOIN companies c ON r.companies_id = c.id
+JOIN selections s ON r.companies_id = s.companies_id 
+WHERE r.users_id = '185ffaae-e320-11ed-8886-26359435711c';
