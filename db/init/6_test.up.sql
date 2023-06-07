@@ -43,6 +43,7 @@ INSERT INTO selections (
 INSERT INTO selections (
     level,users_id,companies_id
 ) VALUES (
+
     1,
         '185ffaae-e320-11ed-8886-26359435711c',
     '21c39950-e322-11ed-8886-26359435711c'

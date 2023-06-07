@@ -3,23 +3,14 @@ user:
   required:
     - id
     - email
-    - future
-    - good_point
-    - bad_point
-    - pr
+    - name
   properties:
     id:
       type: string
       format: uuid
     email:
       type: string
-    future:
-      type: string
-    good_point:
-      type: string
-    bad_point:
-      type: string
-    pr:
+    name:
       type: string
   
 
