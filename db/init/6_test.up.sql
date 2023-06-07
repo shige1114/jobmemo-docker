@@ -32,24 +32,21 @@ INSERT INTO recruits(
     'concerns'
 );
 
+
 INSERT INTO selections (
-    id,users_id,companies_id
+    users_id,companies_id
 ) VALUES (
-    'b3e6c1d4-e324-11ed-8886-26359435711c',
     '185ffaae-e320-11ed-8886-26359435711c',
     '21c39950-e322-11ed-8886-26359435711c'
 );
 
-INSERT INTO questions (
-    id,title
+INSERT INTO selections (
+    level,users_id,companies_id
 ) VALUES (
-    'ec35b76a-e325-11ed-8886-26359435711c',
-    'title'
+
+    1,
+        '185ffaae-e320-11ed-8886-26359435711c',
+    '21c39950-e322-11ed-8886-26359435711c'
 );
 
-SELECT c.name as companies_name, r.offer as recruits_offer,
-s.level as selections_level
-FROM recruits r
-JOIN companies c ON r.companies_id = c.id
-JOIN selections s ON r.companies_id = s.companies_id 
-WHERE r.users_id = '185ffaae-e320-11ed-8886-26359435711c';
+
