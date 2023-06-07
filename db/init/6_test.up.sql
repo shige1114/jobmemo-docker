@@ -22,11 +22,27 @@ INSERT INTO companies (
     'IT'
 );
 
+INSERT INTO companies (
+    id,name,industry
+) VALUES (
+    '21c39950-e322-22ed-8886-26359435711c',
+    '株式会社採用です',
+    'IT'
+);
 INSERT INTO recruits(
     users_id,companies_id,motivation,good_point,concerns
 )VALUES (
     '185ffaae-e320-11ed-8886-26359435711c',
     '21c39950-e322-11ed-8886-26359435711c',
+    'motivation',
+    'good',
+    'concerns'
+);
+INSERT INTO recruits(
+    users_id,companies_id,motivation,good_point,concerns
+)VALUES (
+    '185ffaae-e320-11ed-8886-26359435711c',
+    '21c39950-e322-22ed-8886-26359435711c',
     'motivation',
     'good',
     'concerns'
@@ -43,10 +59,18 @@ INSERT INTO selections (
 INSERT INTO selections (
     level,users_id,companies_id
 ) VALUES (
-
     1,
         '185ffaae-e320-11ed-8886-26359435711c',
     '21c39950-e322-11ed-8886-26359435711c'
 );
 
+
+
+INSERT INTO selections (
+    level,users_id,companies_id
+) VALUES (
+    1,
+    '185ffaae-e320-11ed-8886-26359435711c',
+    '21c39950-e322-22ed-8886-26359435711c'
+);
 
