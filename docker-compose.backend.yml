@@ -21,6 +21,9 @@ services:
       - type: bind
         source: ./db/init
         target: /docker-entrypoint-initdb.d
+      - type: bind
+        source: ./db/
+        target: /src
     networks:
       - golang_test_network
 
