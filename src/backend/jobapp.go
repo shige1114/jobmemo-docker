@@ -1,93 +1,91 @@
 package backend
 
 import (
+	"context"
 	"time"
 
 	"github.com/google/uuid"
 )
 
 type Users struct {
-	Id    uuid.UUID `db:"id"`
-	Name  string    `db:"name"`
-	Email string    `db:"email"`
-
-	Future    string `db:"future"`
-	Pr        string `db:"pr"`
-	GoodPoint string `db:"good_point"`
-	BadPoint  string `db:"bad_point"`
-
-	CreatedAt time.Time `db:"created_at"`
-	UpdatedAt time.Time `db:"updated_at"`
+	Id        uuid.UUID `db:"id"`
+	Name      string    `db:"name"`
+	Email     string    `db:"email"`
+	Future    string    `db:"future"`
+	Pr        string    `db:"pr"`
+	GoodPoint string    `db:"good_point"`
+	BadPoint  string    `db:"bad_point"`
+	//CreatedAt string    `db:"created_at"`
+	//UpdatedAt string    `db:"updated_at"`
 }
 type Cores struct {
 	Id     uuid.UUID `db:"id"`
 	Title  string    `db:"title"`
-	reason string    `db:"reason"`
+	Reason string    `db:"reason"`
 
 	UsersId uuid.UUID `db:"users_id"`
 }
 type Companies struct {
-	id       uuid.UUID `db:"id"`
-	title    string    `db:"title"`
-	industry string    `db:"industry"`
+	Id       uuid.UUID `db:"id"`
+	Name     string    `db:"name"`
+	Industry string    `db:"industry"`
 }
 type Recruits struct {
 	UsersId      uuid.UUID `db:"users_id"`
-	companies_id uuid.UUID `db:"companies_id"`
+	Companies_id uuid.UUID `db:"companies_id"`
 
-	reject bool `db:"reject"`
-	offer  bool `db:"offer"`
-
-	motivation string `db:"motivation"`
-	good_point string `db:"good_point"`
-	concerns   string `db:"concerns"`
+	Reject        bool      `db:"reject"`
+	Offer         bool      `db:"offer"`
+	Selections_id uuid.UUID `db:"selections_id"`
+	Motivation    string    `db:"motivation"`
+	Good_point    string    `db:"good_point"`
+	Concerns      string    `db:"concerns"`
 }
 type Selections struct {
-	id uuid.UUID `db:"id"`
+	Id uuid.UUID `db:"id"`
 
-	level string `db:"level"`
-	types string `db:"type"`
+	Level string `db:"level"`
+	Types string `db:"type"`
 
-	person    string    `db:"person"`
-	adjusting bool      `db:"adjusting"`
-	date      time.Time `db:"date"`
+	Person    string    `db:"person"`
+	Adjusting bool      `db:"adjusting"`
+	Date      time.Time `db:"date"`
 
-	pass bool `db:"pass"`
-	fail bool `db:"fail"`
+	Pass bool `db:"pass"`
+	Fail bool `db:"fail"`
 
-	good_point bool   `db:"good_point"`
-	memo       string `db:"memo"`
+	Good_point bool   `db:"good_point"`
+	Memo       string `db:"memo"`
 
 	UsersId      string `db:"users_id"`
-	companies_id string `db:"companies_id"`
+	Companies_id string `db:"companies_id"`
 }
 
 type Questions struct {
-	id uuid.UUID `db:"id"`
+	Id uuid.UUID `db:"id"`
 
-	title  string `db:"title"`
-	answer string `db:"answer"`
+	Title  string `db:"title"`
+	Answer string `db:"answer"`
 }
 
 type UsersStore interface {
-	Users(id uuid.UUID) (Users, error)
-	UsersByMain(email string) (Users, error)
-	CreateUsers(user *Users) error
-	UpdateUsers(user *Users) error
-	DeleteUsers(id uuid.UUID) error
+	Users(ctx context.Context, id uuid.UUID) (Users, error)
+	Insert(ctx context.Context, user Users) error
+	Update(ctx context.Context, user Users) error
+	Delete(ctx context.Context, id string) error
 }
 type CoresStore interface {
+	Core(users_id string) (Cores, error)
 	Cores(users_id string) ([]Cores, error)
-	CreateCores(core *Cores) error
-	UpdateCores(core *Cores) error
-	DeleteCores(id uuid.UUID) error
+	Insert(core *Cores) error
+	Update(core *Cores) error
+	Delete(id uuid.UUID) error
 }
 type CompaniesStore interface {
 	Companies(id uuid.UUID) (Companies, error)
-	CompaniesByTitle(title uuid.UUID) (Companies, error)
-	CreateCompanies(company *Companies) error
-	UpdateCompanies(company *Companies) error
-	DeleteCompanies(id uuid.UUID) error
+	Insert(company *Companies) error
+	Update(company *Companies) error
+	Delete(id uuid.UUID) error
 }
 type RecruitsStore interface {
 	RecruitsByUsers(users_id uuid.UUID) ([]Recruits, error)
@@ -109,26 +107,32 @@ type QuestionsStore interface {
 }
 
 type Side struct {
-	companies_id    uuid.UUID `db:"companies_id"`
-	companies_title string    `db:"companies_title"`
+	Companies_id    uuid.UUID `db:"companies_id"`
+	Companies_title string    `db:"companies_title"`
 
-	selections_level    string    `db:"selections_level"`
-	selections_adusting bool      `db:"selections_adusting"`
-	selections_date     time.Time `db:"selections_date"`
+	Selections_level    string    `db:"selections_level"`
+	Selections_adusting bool      `db:"selections_adusting"`
+	Selections_date     time.Time `db:"selections_date"`
 
-	recruits_reject bool `db:"recruits_reject"`
-	recruits_offer  bool `db:"recruits_offer"`
+	Recruits_reject bool `db:"recruits_reject"`
+	Recruits_offer  bool `db:"recruits_offer"`
 }
 type Main struct {
+	Companies_name   string
+	recruits         Recruits
+	latest_selection Selections
+	Selections_ids   []uuid.UUID
 }
 
 type SideStore interface {
-	Side(users_id uuid.UUID) ([]Side, error)
+	Sides(users_id uuid.UUID) ([]Side, error)
 }
 type MainStore interface {
+	Main(users_id, companis_id string) (Main, error)
 }
 
 type Store interface {
 	SideStore
 	MainStore
+	UsersStore
 }

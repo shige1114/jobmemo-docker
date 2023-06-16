@@ -16,7 +16,7 @@ func (r *RecruitsStore) Recruits(ctx context.Context, users_id string, companies
 	var recruit backend.Recruits
 
 	sql := `
-	SELECT users_id,companies_id,reject, offer, motivation, good_point, concerns
+	SELECT users_id,companies_id,reject, offer, motivation, good_point, concerns , selections_id
 	FROM recruits
 	WHERE recruits.users_id = $1 AND recruits.companies_id = $2;
 	`
@@ -38,8 +38,8 @@ func (r *RecruitsStore) Recruits(ctx context.Context, users_id string, companies
 func (r *RecruitsStore) InsertContext(ctx context.Context, recruits backend.Recruits) error {
 
 	sql := `
-	INSERT INTO ( users_id,companies_id,reject, offer, motivation, good_point, concerns  )
-	VALUES (:users_id,:companies_id,:reject, :offer, :motivation, :good_point, :concerns)
+	INSERT INTO ( users_id,companies_id,reject, offer, motivation, good_point, concerns,selections_id )
+	VALUES (:users_id,:companies_id,:reject, :offer, :motivation, :good_point, :concerns, :selections_id)
 	`
 	_, err := r.db.NamedExecContext(ctx, sql, recruits)
 	if err != nil {
@@ -50,7 +50,7 @@ func (r *RecruitsStore) InsertContext(ctx context.Context, recruits backend.Recr
 
 func (r *RecruitsStore) Update(ctx context.Context, recruit backend.Recruits) error {
 	sql := `
-	UPDATE recruits SET reject =:reject, offer = :offer ,motivation = :motivation,good_point = :good_point,concerns= :concerns
+	UPDATE recruits SET reject =:reject, offer = :offer ,motivation = :motivation,good_point = :good_point,concerns= :concerns,selections_id = :selections_id
 	WHERE users_id = :users_id AND companies_id = :companies_id
 	`
 	_, err := r.db.NamedExecContext(ctx, sql, recruit)

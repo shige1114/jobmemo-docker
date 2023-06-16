@@ -3,10 +3,10 @@ package handler
 import (
 	"context"
 	"fmt"
-	"testing"
-
+	"github.com/google/uuid"
 	_ "github.com/jackc/pgx/v4/stdlib"
 	"github.com/jmoiron/sqlx"
+	"testing"
 )
 
 func TestRecruitStore(t *testing.T) {
@@ -27,6 +27,11 @@ func TestRecruitStore(t *testing.T) {
 	fmt.Println(recruit)
 	recruit.Reject = true
 	recruit.Offer = true
+	uid, err := uuid.Parse("b3e6c1d4-e324-11ed-8886-26359435711c")
+	if err != nil {
+		t.Fatal(uid)
+	}
+	recruit.Selections_id = uid
 	fmt.Println(recruit)
 	err = recruits_sotre.Update(ctx, *recruit)
 	if err != nil {
