@@ -53,3 +53,11 @@ FROM recruits r
 JOIN companies c ON r.companies_id = c.id
 JOIN selections s ON r.companies_id = s.companies_id 
 WHERE r.users_id = '185ffaae-e320-11ed-8886-26359435711c';
+
+
+
+SELECT c.name, r.users_id, r.companies_id, r.reject, r.offer, s.id AS selection_id, s.level, s.type, s.person, s.adjusting, s.date, s.pass, s.fail, s.good_point, s.memo
+FROM recruits r
+JOIN companies c ON c.id = r.companies_id
+JOIN selections s ON r.selections_id = s.id
+WHERE r.selections_id = '指定したselections_id';

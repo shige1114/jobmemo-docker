@@ -1,8 +1,10 @@
+/*選考タイプに関する定義 (0:説明会,1:書類選考,2:試験,3:面接,4:最終面接)*/
+CREATE TYPE s_type AS ENUM ('0','1','2','3');
 /*選考に関するテーブル*/
 CREATE TABLE selections(
     id UUID PRIMARY KEY,
     /*先行の種類*/
-    level INTEGER NOT NULL DEFAULT 0,
+    level s_type NOT NULL DEFAULT 0,
     type TEXT NOT NULL DEFAULT '',
     /*面接官*/
     person TEXT NOT NULL DEFAULT '',
