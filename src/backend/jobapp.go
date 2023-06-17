@@ -20,7 +20,7 @@ type Users struct {
 }
 type Cores struct {
 	Id     uuid.UUID `db:"id"`
-	Title  string    `db:"title"`
+	Name   string    `db:"name"`
 	Reason string    `db:"reason"`
 
 	UsersId uuid.UUID `db:"users_id"`
@@ -34,12 +34,12 @@ type Recruits struct {
 	UsersId      uuid.UUID `db:"users_id"`
 	Companies_id uuid.UUID `db:"companies_id"`
 
-	Reject        bool      `db:"reject"`
-	Offer         bool      `db:"offer"`
-	Selections_id uuid.UUID `db:"selections_id"`
-	Motivation    string    `db:"motivation"`
-	Good_point    string    `db:"good_point"`
-	Concerns      string    `db:"concerns"`
+	Reject bool `db:"reject"`
+	Offer  bool `db:"offer"`
+
+	Motivation string `db:"motivation"`
+	Good_point string `db:"good_point"`
+	Concerns   string `db:"concerns"`
 }
 type Selections struct {
 	Id uuid.UUID `db:"id"`
@@ -107,21 +107,32 @@ type QuestionsStore interface {
 }
 
 type Side struct {
-	Companies_id    uuid.UUID `db:"companies_id"`
-	Companies_title string    `db:"companies_title"`
+	Id   uuid.UUID `db:"id" json:"id"`
+	Name string    `db:"name"  json:"name"`
 
-	Selections_level    string    `db:"selections_level"`
-	Selections_adusting bool      `db:"selections_adusting"`
-	Selections_date     time.Time `db:"selections_date"`
+	Level     int       `db:"level" json:"level"`
+	Type      int       `db:"type" json:"type"`
+	Adjusting bool      `db:"adjusting" json:"adjusting"`
+	Date      time.Time `db:"date" json:"date"`
 
-	Recruits_reject bool `db:"recruits_reject"`
-	Recruits_offer  bool `db:"recruits_offer"`
+	Reject bool `db:"reject" json:"reject"`
+	Offer  bool `db:"offer" json:"offer"`
 }
 type Main struct {
-	Companies_name   string
-	recruits         Recruits
-	latest_selection Selections
-	Selections_ids   []uuid.UUID
+	Name string `db:"name"  json:"name"`
+
+	Reject    bool      `db:"reject" json:"reject"`
+	Offer     bool      `db:"offer" json:"offer"`
+	Adjusting bool      `db:"adjusting" json:"adjusting"`
+	Date      time.Time `db:"date" json:"date"`
+	Level     int       `db:"level" json:"level"`
+	Type      int       `db:"type" json:"type"`
+
+	Motivation string `db:"motivation" json:"motivation"`
+	Good_point string `db:"good_point" json:"good_point"`
+	Concerns   string `db:"concerns" json:"concerns"`
+
+	Selections map[int]int `json:"selections"`
 }
 
 type SideStore interface {
@@ -129,6 +140,9 @@ type SideStore interface {
 }
 type MainStore interface {
 	Main(users_id, companis_id string) (Main, error)
+}
+type Error struct {
+	Err string `json:"err"`
 }
 
 type Store interface {
