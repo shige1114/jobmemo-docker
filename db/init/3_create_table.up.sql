@@ -7,8 +7,6 @@ CREATE TABLE recruits(
     /*合否*/
     reject BOOLEAN NOT NULL DEFAULT  FALSE,
     offer BOOLEAN NOT NULL DEFAULT FALSE,
-    /*最新の選考*/
-    selections_id UUID NOT NULL DEFAULT '',
     /*企業研究*/
     motivation VARCHAR(300) NOT NULL DEFAULT '',
     good_point VARCHAR(200) NOT NULL DEFAULT '',

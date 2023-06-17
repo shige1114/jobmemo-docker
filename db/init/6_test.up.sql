@@ -21,7 +21,6 @@ INSERT INTO companies (
     '株式会社採用します',
     'IT'
 );
-
 INSERT INTO companies (
     id,name,industry
 ) VALUES (
@@ -47,32 +46,41 @@ INSERT INTO recruits(
     'good',
     'concerns'
 );
-
-
 INSERT INTO selections (
-    users_id,companies_id
+    users_id,companies_id,level
 ) VALUES (
     '185ffaae-e320-11ed-8886-26359435711c',
-    '21c39950-e322-11ed-8886-26359435711c'
+    '21c39950-e322-22ed-8886-26359435711c',
+    1
 );
 
 INSERT INTO selections (
-    level,users_id,companies_id
+    users_id,companies_id,level
 ) VALUES (
-    1,
-        '185ffaae-e320-11ed-8886-26359435711c',
-    '21c39950-e322-11ed-8886-26359435711c'
+    '185ffaae-e320-11ed-8886-26359435711c',
+    '21c39950-e322-11ed-8886-26359435711c',
+    1
 );
 
-
-
 INSERT INTO selections (
-    level,users_id,companies_id
+    users_id,companies_id,level
 ) VALUES (
-    1,
     '185ffaae-e320-11ed-8886-26359435711c',
-    '21c39950-e322-22ed-8886-26359435711c'
-
+    '21c39950-e322-11ed-8886-26359435711c',
+    2
+);
+INSERT INTO selections (
+    users_id,companies_id,level
+) VALUES (
+    '185ffaae-e320-11ed-8886-26359435711c',
+    '21c39950-e322-11ed-8886-26359435711c',
+    3
+);
+INSERT INTO questions (
+    id,title
+) VALUES (
+    'ec35b76a-e325-11ed-8886-26359435711c',
+    'title'
 );
 
 SELECT c.name as companies_name, r.offer as recruits_offer,
@@ -88,5 +96,4 @@ SELECT c.name, r.users_id, r.companies_id, r.reject, r.offer, s.id AS selection_
 FROM recruits r
 JOIN companies c ON c.id = r.companies_id
 JOIN selections s ON r.selections_id = s.id
-WHERE r.selections_id = '指定したselections_id';
-
+WHERE r.users_id = '185ffaae-e320-11ed-8886-26359435711c' AND r.companies_id = '21c39950-e322-11ed-8886-26359435711c';

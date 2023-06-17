@@ -3,8 +3,8 @@ CREATE TYPE s_type AS ENUM ('0','1','2','3');
 /*選考に関するテーブル*/
 CREATE TABLE selections(
     /*先行の種類*/
-    level s_type NOT NULL DEFAULT 0,
-    type TEXT NOT NULL DEFAULT '',
+    level INTEGER NOT NULL DEFAULT 0,
+    type INTEGER NOT NULL DEFAULT 0,
     /*面接官*/
     person TEXT NOT NULL DEFAULT '',
     /*日程*/
@@ -18,8 +18,8 @@ CREATE TABLE selections(
     good_point VARCHAR(200) NOT NULL DEFAULT '',
     memo VARCHAR(200) NOT NULL DEFAULT '',
     /*ユーザと会社の関係*/
-    users_id UUID REFERENCES recruits(users_id),
-    companies_id UUID REFERENCES recruits(companies_id),
+    users_id UUID NOT NULL,
+    companies_id UUID NOT NULL,
     FOREIGN KEY (users_id, companies_id) REFERENCES recruits (users_id, companies_id) ON DELETE CASCADE,
 
     PRIMARY KEY (level,users_id,companies_id)
