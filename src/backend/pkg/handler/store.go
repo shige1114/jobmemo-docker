@@ -1,15 +1,22 @@
-package db
+package handler
 
 import (
 	"fmt"
 	"log"
-	"os"
-	"github.com/jmoiron/sqlx"
+
 	_ "github.com/jackc/pgx"
+	"github.com/jmoiron/sqlx"
 )
 
-func NewStore(uri string) (*Store, error) {
-	db, err := sql.Open("pgx", os.Getenv("DATABASE_URI"))
+func NewStore(test bool, uri string) (*Store, error) {
+	var db *sqlx.DB
+	var err error
+
+	if test != true {
+		db, err = sqlx.Open("pgx", uri)
+	} else {
+		db, err = sqlx.Open("pgx", "postgres://root:password@db:5432/test_db")
+	}
 
 	if err != nil {
 		log.Println(err)
@@ -21,9 +28,8 @@ func NewStore(uri string) (*Store, error) {
 	}
 
 	return &Store{
-		SideStore: &SideStore{DB: db},
-		MainStore: &MainStore{DB: db},
-		UsersStore: &UsersStore{DB: db}
+		SideStore: &SideStore{db: db},
+		MainStore: &MainStore{db: db},
 	}, nil
 }
 

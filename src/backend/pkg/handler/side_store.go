@@ -12,26 +12,26 @@ type SideStore struct {
 	db *sqlx.DB
 }
 
-func (s *SideStore) Side(ctx context.Context, users_id string) (*[]backend.Side, error) {
-	side := []backend.Side{}
+func (s *SideStore) Side(ctx context.Context, users_id string, sidebar *[]backend.Side) error {
 	sql := `
-	SELECT c.id as companies_id, c.name as companies_name, s.level as selections_level, s.date as selections_date, r.reject recruits_reject, r.offer as recruits_offer
-FROM recruits r 
-JOIN companies c ON r.companies_id = c.id 
-JOIN selections s ON r.companies_id = s.companies_id 
-WHERE r.users_id = $1  ;`
+	SELECT c.name AS name, r.companies_id AS id, s.date AS date, r.reject reject, r.offer AS offer ,s.level AS level , s.adjusting AS adjusting
+	FROM recruits r 
+	JOIN companies c ON r.companies_id = c.id 
+	JOIN selections s ON r.companies_id = s.companies_id 
+	WHERE r.users_id =  $1
+	AND s.level = (SELECT MAX(level) FROM selections WHERE companies_id = r.companies_id);
+	`
 
 	rows, err := s.db.QueryxContext(ctx, sql, users_id)
-	defer s.db.Close()
 	if err != nil {
-		return nil, err
+		return err
 	}
 
-	err = sqlx.StructScan(rows, &side)
+	err = sqlx.StructScan(rows, sidebar)
 	if err != nil {
-		return nil, err
+		return err
 	}
 
-	return &side, nil
+	return nil
 
 }
