@@ -114,6 +114,8 @@ type Side struct {
 	Type      int       `db:"type" json:"type"`
 	Adjusting bool      `db:"adjusting" json:"adjusting"`
 	Date      time.Time `db:"date" json:"date"`
+	Pass bool `db:"pass" json:"pass"`
+	Fail bool `db:"fail" json:"fail"`
 
 	Reject bool `db:"reject" json:"reject"`
 	Offer  bool `db:"offer" json:"offer"`
@@ -127,6 +129,8 @@ type Main struct {
 	Date      time.Time `db:"date" json:"date"`
 	Level     int       `db:"level" json:"level"`
 	Type      int       `db:"type" json:"type"`
+	Pass bool `db:"pass" json:"pass"`
+	Fail bool `db:"fail" json:"fail"`
 
 	Motivation string `db:"motivation" json:"motivation"`
 	Good_point string `db:"good_point" json:"good_point"`
