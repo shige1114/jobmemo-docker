@@ -28,19 +28,18 @@ type Cores struct {
 }
 type Companies struct {
 	id       uuid.UUID `db:"id"`
-	title    string    `db:"title"`
+	title    string    `db:"name"`
 	industry string    `db:"industry"`
 }
 type Recruits struct {
-	UsersId      uuid.UUID `db:"users_id"`
-	companies_id uuid.UUID `db:"companies_id"`
+	UsersId     uuid.UUID `db:"users_id"`
+	CompaniesId uuid.UUID `db:"companies_id"`
 
-	reject bool `db:"reject"`
-	offer  bool `db:"offer"`
-
-	motivation string `db:"motivation"`
-	good_point string `db:"good_point"`
-	concerns   string `db:"concerns"`
+	Reject     bool   `db:"reject"`
+	Offer      bool   `db:"offer"`
+	Motivation string `db:"motivation"`
+	GoodPoint  string `db:"good_point"`
+	Concerns   string `db:"concerns"`
 }
 type Selections struct {
 	id uuid.UUID `db:"id"`
@@ -109,17 +108,18 @@ type QuestionsStore interface {
 }
 
 type Side struct {
-	companies_id    uuid.UUID `db:"companies_id"`
-	companies_title string    `db:"companies_title"`
+	Companies_id   uuid.UUID `db:"companies_id"`
+	Companies_name string    `db:"companies_name"`
 
-	selections_level    string    `db:"selections_level"`
-	selections_adusting bool      `db:"selections_adusting"`
-	selections_date     time.Time `db:"selections_date"`
+	Selections_level string    `db:"selections_level"`
+	Selections_date  time.Time `db:"selections_date"`
+	Adjusting        bool      `db:"adjusting"`
 
-	recruits_reject bool `db:"recruits_reject"`
-	recruits_offer  bool `db:"recruits_offer"`
+	Recruits_reject bool `db:"recruits_reject"`
+	Recruits_offer  bool `db:"recruits_offer"`
 }
 type Main struct {
+	Recruit Recruits
 }
 
 type SideStore interface {

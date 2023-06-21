@@ -32,8 +32,18 @@ func (d *Mysql) Query(t string, args ...interface{}) (*Row, error) {
 
 func (d *Mysql) QueryRow(t string, args ...interface{}) (*Row, error) {
 	row := d.DB.QueryRow(t, args...)
-	if row.Err() != nil {
+	if err := row.Err(); err != nil {
 		return nil, fmt.Errorf("")
 	}
 	return &Row{row: row}, nil
+}
+
+func (d *Mysql) Exec(t string, args ...interface{}) error {
+	_, err := d.DB.Exec(t, args...)
+
+	if err != nil {
+		return fmt.Errorf("")
+	}
+	return nil
+
 }

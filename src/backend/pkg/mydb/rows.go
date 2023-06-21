@@ -75,3 +75,7 @@ func (r *Row) Scans(dest interface{}) error {
 
 	return nil
 }
+
+func (r *Row) Close() {
+	r.rows.Close()
+}
