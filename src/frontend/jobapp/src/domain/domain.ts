@@ -1,5 +1,4 @@
 import { UUID } from "crypto"
-import internal from "stream"
 
 export interface Sidebar {
     id: UUID
@@ -9,6 +8,8 @@ export interface Sidebar {
     adjusting: boolean
     reject: boolean
     offer: boolean
+    pass: boolean
+    fail: boolean
 }
 export interface Statusbar {
     id: UUID
@@ -17,6 +18,8 @@ export interface Statusbar {
     adjusting: boolean
     reject: boolean
     offer: boolean
+    pass: boolean
+    fail: boolean
 }
 export interface Namebar {
     id: UUID
@@ -30,7 +33,9 @@ export interface Mainbox {
     adjusting: boolean
     reject: boolean
     offer: boolean
-    
+    pass: boolean
+    fail: boolean
+
     level: number
     type: number
 
@@ -48,7 +53,8 @@ export interface Statusbox {
     adjusting: boolean
     reject: boolean
     offer: boolean
-    
+    pass: boolean
+    fail: boolean
     level: number
     type: number 
 }
