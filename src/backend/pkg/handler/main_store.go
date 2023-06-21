@@ -26,7 +26,7 @@ func (s *MainStore) Main(ctx context.Context, users_id, companies_id string, mai
 	var sql2 string
 	var tmp = make(map[int]int)
 	sql1 = `
-	SELECT c.name AS name, s.date AS date, r.reject reject, r.offer AS offer ,s.level AS level ,s.type AS type, s.adjusting AS adjusting, r.motivation AS motivation,r.good_point AS good_point,r.concerns AS concerns
+	SELECT c.name AS name,s.pass AS pass,s.fail AS s.fail, s.date AS date, r.reject reject, r.offer AS offer ,s.level AS level ,s.type AS type, s.adjusting AS adjusting, r.motivation AS motivation,r.good_point AS good_point,r.concerns AS concerns
 	FROM recruits r 
 	JOIN companies c ON r.companies_id = c.id 
 	JOIN selections s ON r.companies_id = s.companies_id 
