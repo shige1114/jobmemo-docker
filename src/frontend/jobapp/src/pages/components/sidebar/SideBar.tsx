@@ -1,26 +1,25 @@
 import React, { useEffect, useState } from "react";
-import classNames from "classnames";
 import PropTypes from "prop-types";
 import { Nav } from "react-bootstrap"
-import ListOval, { ListOvalProps } from "./namebox/ListOval";
+import { Sidebar } from "@/domain/domain";
+import useSWR from "swr"
 
 export interface SideBarProps {
-    datas?: ListOvalProps[]
+    sidebar : Sidebar
 }
 const propTypes = {
-    datas: PropTypes.array
+    sidebar: PropTypes.objectOf
 }
 const SideBar = (props: SideBarProps) => {
-    const [datas, setDatas] = useState<ListOvalProps[]>([])
-    useEffect(()=>{
-        checkDatas(props.datas)
-    },[])
-    function checkDatas(datas:any){
-        if (datas != undefined && datas.length > 0){
-            setDatas(datas)
-        }
-    }
-    
+
+    // useEffect(()=>{
+    //     checkDatas(props.datas)
+    // },[])
+    // function checkDatas(datas:any){
+    //     if (datas != undefined && datas.length > 0){
+    //         setDatas(datas)
+    //     }
+    // }
     const Item = () => {
 
         if (datas.length > 0) {
