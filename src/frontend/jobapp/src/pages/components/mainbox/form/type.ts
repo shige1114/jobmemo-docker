@@ -8,5 +8,5 @@ export interface Props {
     text : string
 
     type : Type
-    onClick?: () => void
+    onClick: (...props:any) => void
 }

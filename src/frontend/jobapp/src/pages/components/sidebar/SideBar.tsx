@@ -1,6 +1,6 @@
 import React, { memo, useEffect, useState } from "react";
 import { Props } from "./type"
-import { Card } from "react-bootstrap";
+import { Card ,createTheme,ThemeProvider} from "@mui/material";
 import { NameBar } from "./namebar/namebar";
 import { StatusBar } from "./statusbar/statusbar";
 import { ColorType } from "./namebar/type";
