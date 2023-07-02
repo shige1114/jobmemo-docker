@@ -1,76 +1,76 @@
-import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
-import { Nav } from "react-bootstrap"
-import { Sidebar, Statusbar } from "@/domain/domain";
-import useSWR from "swr"
+import React, { memo, useEffect, useState } from "react";
+import { Props } from "./type"
+import { CardContent, Typography } from "@mui/material";
 
-export interface Statusfunction {
-    adjusting: boolean
-    reject: boolean
-    offer: boolean
-    pass: boolean
-    fail: boolean
-    date: Date
-}
-
-const StatusFunction = (props: Statusfunction) => {
-    const [adjusting, SetAdjusting] = useState(props.adjusting)
-    const [offer, SetOffer] = useState(props.offer)
-    const [reject, SetReject] = useState(props.reject)
-    const [fail, SetFail] = useState(props.fail)
-    const [pass, SetPass] = useState(props.pass)
-    const [date, SetDate] = useState(props.date)
-
-    const fether = async () => { }
-
-    const swither = () => {
-        if (adjusting == true) {
-            return <></>
-        } else {
-            if (fail == true || pass == true) {
-                return <></>
-            } else if (offer == true || reject == true) {
-                return <></>
-            } else {
-                return <></>
-            }
+export const StatusBar: React.FC<Props> = memo(
+    ({
+        types,
+        type,
+        size,
+        level,
+        adjusting,
+        reject,
+        offer,
+        pass,
+        fail,
+        date, ...props }) => {
+        let color = ""
+        let label = ""
+        let content = ""
+        switch (type) {
+            case 0:
+                label = "説明会"
+            case 1:
+                label = "書類選考"
+            case 2:
+                label = "試験"
+            case 3:
+                label = "面接" + level?.toString()
+            case 4:
+                label = "最終面接"
         }
-    }
-    return (
-        <div className="side-statufunction">
-            {swither()}
-        </div>
-    )
-
-}
-
-interface Typebar {
-    level: number
-    type: number
-}
-const TypeBar = (props: Typebar) => {
-    switch (props.type) {
-        case 0:
-            return <></>
-        case 1:
-            return <></>
-        case 2:
-            return <></>
-        case 4:
-            return <></>
-
-    }
-}
+        
+        switch (types) {
+            case "adjusting":
+                color = "black"
+                content = "日程調整中"
+                break
+            case "offer":
+                content = "合格"
+                color = "green"
+                break
+            case "reject":
+                color = "red"
+                content = "不合格"
+                
+            case "waiting":
+                color="yellow"
+                content = content = "予定日 "
+                + date?.getMonth.toString() + "月"
+                + date?.getDate().toString() + "日"
+                + date?.getHours().toString() + ":"
+                + date?.getMinutes().toString()
+        }
 
 
-const StatusBar = (props: Sidebar) => {
-    const fether = async () => { }
 
-    return (
-        <div className="side-statusbar">
-            {TypeBar(props)}
-            {StatusFunction(props)}
-        </div>
-    )
+        return (
+            <CardContent>
+                <Typography style={{color:color}}>{label} {content}</Typography>
+            </CardContent>
+        )
+    })
 
-}
+
+
+// const StatusBar = (props: Sidebar) => {
+//     const fether = async () => { }
+
+//     return (
+//         <div className="side-statusbar">
+//             {TypeBar(props)}
+//             {StatusFunction(props)}
+//         </div>
+//     )
+
+// }

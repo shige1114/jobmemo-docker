@@ -1,11 +1,8 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import { Inter } from 'next/font/google'
-import styles from '@/styles/Home.module.css'
-import { Container, Row } from 'react-bootstrap'
-import SideBar from './components/sidebox/SideBar'
-import ListOval from './components/sidebox/namebox/ListOval'
-import MainBox from './components/mainbox/MainBox'
+
+import { SideBar } from './components/sidebar/SideBar'
+import { SidebarType, Size } from './components/sidebar/type'
 const inter = Inter({ subsets: ['latin'] })
 const testprop = [
   {
@@ -35,6 +32,19 @@ const testprop = [
 
 ]
 
+const data = {
+  type: 3 as SidebarType,
+  size: "s" as Size,
+  level: 2,
+  adjusting: false,
+  reject: false,
+  offer: true,
+  pass: false,
+  fail: false,
+  date: new Date("2023-06-17 12:59:38.858725"),
+  name: "株式会社採用します",
+};
+import Button from '@mui/material/Button';
 
 export default function Home() {
   return (
@@ -46,11 +56,8 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div>
-
-
-      <SideBar datas={testprop}/> 
-      <MainBox/>
-
+        <SideBar {...data}
+        />
       </div>
     </>
   )
