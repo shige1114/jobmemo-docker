@@ -91,9 +91,7 @@ export const Form: React.FC<Props> = memo(
                     <Button type="submit" variant="outlined"> SUBMIT </Button>
                     <Button variant="outlined" onClick={deleteLocalStrage}>変更を削除</Button>
                 </Box>
-
             </ThemeProvider>
-
         )
     }
 )
