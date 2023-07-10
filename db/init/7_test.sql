@@ -1,4 +1,4 @@
-SELECT c.name AS name, r.companies_id AS id, s.date AS date, r.reject reject, r.offer AS offer ,s.level AS level , s.adjusting AS adjusting
+SELECT c.name AS name, r.companies_id AS id, s.date AS date, r.reject reject, r.offer AS offer ,s.level AS level , s.adjusting AS adjusting , s.pass AS pass , s.fail AS fail
 FROM recruits r 
 JOIN companies c ON r.companies_id = c.id 
 JOIN selections s ON r.companies_id = s.companies_id 
