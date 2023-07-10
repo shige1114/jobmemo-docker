@@ -52,11 +52,6 @@ export const StatusBar: React.FC<Props> = memo(
                 + date?.getMinutes().toString()
         }
 
-        
-
-
-
-
         return (
             <>
             <CardContent>
