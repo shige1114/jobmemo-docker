@@ -1,0 +1,80 @@
+mains:
+  get:
+    summary: メインの表示
+
+    tags:
+      - main
+      - recruit
+      - selection
+      - question
+    parameters:
+      - in: cookie
+        name: session_id
+        description: The session
+        schema:
+          type: string
+          format: uuid
+      - in: query
+        name: user_id
+        description: セッションが切れていた場合
+        schema:
+          type: string
+          format: uuid
+      - in: query
+        name: companies_id
+        description: 会社ID
+        schema:
+          type: string
+          format: uuid
+
+    responses:
+      "200":
+        description: 成功
+        content:
+          application/json:
+          schema:
+            oneof:
+             - $ref: "../components/schemas/main.yml#/main"
+             - $ref: "../components/schemas/core.yml#/cores"
+      "400":
+        $ref: "../components/response/400.yml"
+      "401":
+        $ref: "../components/response/400.yml"
+      "403":
+        $ref: "../components/response/400.yml"
+      "404":
+        $ref: "../components/response/400.yml"
+      "422":
+        $ref: "../components/response/400.yml"
+      "500":
+        $ref: "../components/response/400.yml"
+
+  post:
+    summary: メインのアップデート
+    tags:
+      - main
+
+    requestBody:
+      application/json:
+      content:
+        schema:
+          $ref: "../components/schemas/main.yml#/main"
+    responses:
+      "200":
+        description: 成功
+        content:
+          application/json:
+          schema:
+            $ref: "../components/schemas/main.yml#/main"
+      "400":
+        $ref: "../components/response/400.yml"
+      "401":
+        $ref: "../components/response/400.yml"
+      "403":
+        $ref: "../components/response/400.yml"
+      "404":
+        $ref: "../components/response/400.yml"
+      "422":
+        $ref: "../components/response/400.yml"
+      "500":
+        $ref: "../components/response/400.yml"
